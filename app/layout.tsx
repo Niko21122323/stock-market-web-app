@@ -33,3 +33,6 @@ export default function RootLayout({
 		</html>
 	);
 }
+
+// mongo user: quickcash54321_db_user
+// mongo pass: uIQh60tsnfW5XSmC
