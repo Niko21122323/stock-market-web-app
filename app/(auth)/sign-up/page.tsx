@@ -56,6 +56,7 @@ const SignUp = () => {
 					label="Email"
 					placeholder="email@example.com"
 					register={register}
+					type="email"
 					error={errors.email}
 					validation={{
 						required: "Email is required",
