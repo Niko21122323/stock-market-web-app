@@ -46,7 +46,7 @@ export const sendNewsSummaryEmail = async ({
 		date,
 	).replace("{{newsContent}}", newsContent);
 	const mailOptions = {
-		from: `"Signalist News" <signalist@jsmastery.pro>`,
+		from: `"Signalist News" <nikola211223232529321@gmail.com>`,
 		to: email,
 		subject: `📈 Market News Summary Today - ${date}`,
 		text: `Today's market news summary from Signalist`,
