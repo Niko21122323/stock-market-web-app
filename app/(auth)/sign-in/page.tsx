@@ -1,12 +1,13 @@
 "use client";
 
+import { signInEmail } from "better-auth/api";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import FooterLink from "@/components/forms/FooterLink";
 import InputField from "@/components/forms/InputField";
 import { Button } from "@/components/ui/button";
-import { signInWithEmail } from "@/lib/actions/auth.actions";
+import { signInWithEmail, signUpWithEmail } from "@/lib/actions/auth.actions";
 
 const SignIn = () => {
 	const router = useRouter();
@@ -37,12 +38,12 @@ const SignIn = () => {
 	return (
 		<>
 			<h1 className="form-title">Welcome back</h1>
+
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
 				<InputField
 					name="email"
 					label="Email"
-					placeholder="email@example.com"
-					type="email"
+					placeholder="contact@jsmastery.com"
 					register={register}
 					error={errors.email}
 					validation={{
@@ -50,6 +51,7 @@ const SignIn = () => {
 						pattern: /^\w+@\w+\.\w+$/,
 					}}
 				/>
+
 				<InputField
 					name="password"
 					label="Password"
@@ -59,6 +61,7 @@ const SignIn = () => {
 					error={errors.password}
 					validation={{ required: "Password is required", minLength: 8 }}
 				/>
+
 				<Button
 					type="submit"
 					disabled={isSubmitting}
@@ -68,13 +71,12 @@ const SignIn = () => {
 				</Button>
 
 				<FooterLink
-					text="Don't have an account? "
-					linkText=" Create an account"
+					text="Don't have an account?"
+					linkText="Create an account"
 					href="/sign-up"
 				/>
 			</form>
 		</>
 	);
 };
-
 export default SignIn;
