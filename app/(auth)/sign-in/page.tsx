@@ -50,7 +50,6 @@ const SignIn = () => {
 						pattern: /^\w+@\w+\.\w+$/,
 					}}
 				/>
-
 				<InputField
 					name="password"
 					label="Password"
@@ -60,7 +59,6 @@ const SignIn = () => {
 					error={errors.password}
 					validation={{ required: "Password is required", minLength: 8 }}
 				/>
-
 				<Button
 					type="submit"
 					disabled={isSubmitting}
@@ -68,7 +66,6 @@ const SignIn = () => {
 				>
 					{isSubmitting ? "Signing In" : "Sign In"}
 				</Button>
-
 				<FooterLink
 					text="Don't have an account?"
 					linkText="Create an account"
