@@ -1,6 +1,6 @@
 "use client";
 
-import { Loader2, TrendingUp } from "lucide-react";
+import { Loader2, Star, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
@@ -13,6 +13,8 @@ import {
 	CommandSeparator,
 	CommandShortcut,
 } from "@/components/ui/command";
+import { useDebounce } from "@/hoks/useDebounce";
+import { searchStocks } from "@/lib/actions/finnhub.actions";
 import { Button } from "./ui/button";
 
 export default function SearchCommand({
@@ -23,7 +25,8 @@ export default function SearchCommand({
 	const [open, setOpen] = useState(false);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [loading, setLoading] = useState(false);
-	const [stocks, setStocks] = useState(initialStocks);
+	const [stocks, setStocks] =
+		useState<StockWithWatchlistStatus[]>(initialStocks);
 
 	const isSearchMode = !!searchTerm.trim();
 	const displayStocks = isSearchMode ? stocks : stocks?.slice(0, 10);
@@ -40,9 +43,31 @@ export default function SearchCommand({
 		return () => window.removeEventListener("keydown", onKeyDown);
 	}, []);
 
-	const handleSelectStock = (value: string) => {
-		console.log("Stock selected");
+	const handleSearch = async () => {
+		if (!isSearchMode) return setStocks(initialStocks);
+
+		setLoading(true);
+
+		try {
+			const results = await searchStocks(searchTerm.trim());
+			setStocks(results);
+		} catch {
+			setStocks([]);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const debouncedSearch = useDebounce(handleSearch, 300);
+
+	useEffect(() => {
+		debouncedSearch();
+	}, [searchTerm]);
+
+	const handleSelectStock = () => {
 		setOpen(false);
+		setSearchTerm("");
+		setStocks(initialStocks);
 	};
 
 	return (
@@ -100,6 +125,7 @@ export default function SearchCommand({
 												{stock.symbol} | {stock.exchange} | {stock.type}
 											</div>
 										</div>
+										<Star />
 									</Link>
 								</li>
 							))}
