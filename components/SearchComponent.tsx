@@ -1,21 +1,17 @@
 "use client";
 
-import { Loader2, Star, TrendingUp } from "lucide-react";
+import { Loader2, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
 	CommandDialog,
 	CommandEmpty,
-	CommandGroup,
 	CommandInput,
-	CommandItem,
 	CommandList,
-	CommandSeparator,
-	CommandShortcut,
 } from "@/components/ui/command";
 import { useDebounce } from "@/hoks/useDebounce";
 import { searchStocks } from "@/lib/actions/finnhub.actions";
-import { Button } from "./ui/button";
 
 export default function SearchCommand({
 	renderAs = "button",
@@ -38,7 +34,6 @@ export default function SearchCommand({
 				setOpen((v) => !v);
 			}
 		};
-
 		window.addEventListener("keydown", onKeyDown);
 		return () => window.removeEventListener("keydown", onKeyDown);
 	}, []);
@@ -90,7 +85,7 @@ export default function SearchCommand({
 					<CommandInput
 						value={searchTerm}
 						onValueChange={setSearchTerm}
-						placeholder="Find a stock..."
+						placeholder="Search stocks..."
 						className="search-input"
 					/>
 					{loading && <Loader2 className="search-loader" />}
@@ -98,7 +93,7 @@ export default function SearchCommand({
 				<CommandList className="search-list">
 					{loading ? (
 						<CommandEmpty className="search-list-empty">
-							Loading Stocks...
+							Loading stocks...
 						</CommandEmpty>
 					) : displayStocks?.length === 0 ? (
 						<div className="search-list-indicator">
@@ -107,16 +102,15 @@ export default function SearchCommand({
 					) : (
 						<ul>
 							<div className="search-count">
-								{isSearchMode ? "Search results" : "Popular Stocks"}
-								{``}({displayStocks?.length || 0})
+								{isSearchMode ? "Search results" : "Popular stocks"}
+								{` `}({displayStocks?.length || 0})
 							</div>
-
-							{displayStocks?.map((stock, i) => (
-								<li className="search-item" key={stock.symbol}>
+							{displayStocks?.map((stock) => (
+								<li key={stock.symbol} className="search-item">
 									<Link
-										className="search-item-link"
 										href={`/stocks/${stock.symbol}`}
 										onClick={handleSelectStock}
+										className="search-item-link"
 									>
 										<TrendingUp className="h-4 w-4 text-gray-500" />
 										<div className="flex-1">
@@ -125,7 +119,7 @@ export default function SearchCommand({
 												{stock.symbol} | {stock.exchange} | {stock.type}
 											</div>
 										</div>
-										<Star />
+										{/*<Star />*/}
 									</Link>
 								</li>
 							))}
