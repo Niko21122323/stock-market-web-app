@@ -36,6 +36,142 @@ export const CONDITION_OPTIONS = [
 ];
 
 // TradingView Charts
+export const SYMBOL_OVERVIEW_WIDGET_CONFIG = {
+  lineWidth: 2,
+  lineType: 0,
+  chartType: "candlesticks",
+  fontColor: "rgb(106, 109, 120)",
+  gridLineColor: "rgba(242, 242, 242, 0.06)",
+  volumeUpColor: "rgba(34, 171, 148, 0.5)",
+  volumeDownColor: "rgba(247, 82, 95, 0.5)",
+  backgroundColor: "#0F0F0F",
+  widgetFontColor: "#DBDBDB",
+  upColor: "#22ab94",
+  downColor: "#f7525f",
+  borderUpColor: "#22ab94",
+  borderDownColor: "#f7525f",
+  wickUpColor: "#22ab94",
+  wickDownColor: "#f7525f",
+  colorTheme: "dark",
+  isTransparent: false,
+  locale: "en",
+  chartOnly: false,
+  scalePosition: "right",
+  scaleMode: "Normal",
+  fontFamily:
+    "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+  valuesTracking: "1",
+  changeMode: "price-and-percent",
+  symbols: [
+    ["Apple", "NASDAQ:AAPL|1D"],
+    ["Google", "NASDAQ:GOOGL|1D"],
+    ["Microsoft", "NASDAQ:MSFT|1D"],
+    ["Tesla", "NASDAQ:TSLA|1D"],
+    ["NVIDIA", "NASDAQ:NVDA|1D"],
+    ["AMD", "NASDAQ:AMD|1D"],
+    ["Amazon", "NASDAQ:AMZN|1D"],
+    ["Meta", "NASDAQ:META|1D"],
+    ["Palantir", "NASDAQ:PLTR|1D"],
+    ["Netflix", "NASDAQ:NFLX|1D"],
+  ],
+  dateRanges: ["1d|1", "1m|30", "3m|60", "12m|1D", "60m|1W", "all|1M"],
+  fontSize: "10",
+  headerFontSize: "medium",
+  autosize: true,
+  width: "100%",
+  height: "600",
+  noTimeScale: false,
+  hideDateRanges: false,
+  hideMarketStatus: false,
+  hideSymbolLogo: false,
+};
+
+export const TICKER_TAPE_WIDGET_CONFIG = {
+  symbols: [
+    {
+      proName: "NASDAQ:TSLA",
+      title: "",
+    },
+    {
+      proName: "NASDAQ:NVDA",
+      title: "",
+    },
+    {
+      proName: "NASDAQ:AAPL",
+      title: "",
+    },
+    {
+      proName: "NASDAQ:AMD",
+      title: "",
+    },
+    {
+      proName: "NASDAQ:AMZN",
+      title: "",
+    },
+    {
+      proName: "NASDAQ:META",
+      title: "",
+    },
+    {
+      proName: "NASDAQ:PLTR",
+      title: "",
+    },
+    {
+      proName: "NASDAQ:MSFT",
+      title: "",
+    },
+    {
+      proName: "NASDAQ:MSTR",
+      title: "",
+    },
+    {
+      proName: "NASDAQ:COIN",
+      title: "",
+    },
+    {
+      proName: "NASDAQ:GOOGL",
+      title: "",
+    },
+    {
+      proName: "NASDAQ:NFLX",
+      title: "",
+    },
+  ],
+  colorTheme: "dark",
+  locale: "en",
+  largeChartUrl: "",
+  isTransparent: true,
+  showSymbolLogo: true,
+  displayMode: "adaptive",
+};
+
+export const ADVANCED_CHART_WIDGET_CONFIG = {
+  allow_symbol_change: true,
+  calendar: false,
+  details: false,
+  hide_side_toolbar: true,
+  hide_top_toolbar: false,
+  hide_legend: false,
+  hide_volume: false,
+  hotlist: false,
+  interval: "D",
+  locale: "en",
+  save_image: true,
+  style: "1",
+  symbol: "NASDAQ:NVDA",
+  theme: "dark",
+  timezone: "Etc/UTC",
+  backgroundColor: "#0F0F0F",
+  gridColor: "rgba(242, 242, 242, 0.06)",
+  watchlist: [],
+  withdateranges: false,
+  compareSymbols: [],
+  studies: [],
+  autosize: true,
+  width: "100%",
+  height: 600,
+};
+
 export const MARKET_OVERVIEW_WIDGET_CONFIG = {
   colorTheme: "dark", // dark mode
   dateRange: "12M", // last 12 months
@@ -51,7 +187,7 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
   belowLineFillColorFalling: "rgba(41, 98, 255, 0.12)", // fill under line when falling
   belowLineFillColorGrowingBottom: "rgba(41, 98, 255, 0)",
   belowLineFillColorFallingBottom: "rgba(41, 98, 255, 0)",
-  symbolActiveColor: "rgba(15, 237, 190, 0.05)", // highlight color for active symbol
+  symbolActiveColor: "rgba(15, 237, 190, 0.05)",
   tabs: [
     {
       title: "Financial",
@@ -127,7 +263,7 @@ export const TOP_STORIES_WIDGET_CONFIG = {
 export const MARKET_DATA_WIDGET_CONFIG = {
   title: "Stocks",
   width: "100%",
-  height: 600,
+  height: "600",
   locale: "en",
   showSymbolLogo: true,
   colorTheme: "dark",
