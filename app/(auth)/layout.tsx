@@ -9,31 +9,37 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
   if (session?.user) redirect("/");
 
   return (
-    <main className="auth-layout">
-      <section className="auth-left-section scrollbar-hide-default">
-        <Link href="/" className="auth-logo">
-          <Image
-            src="/assets/icons/equify-logo-light.png"
-            alt="company logo"
-            width={140}
-            height={32}
-            className="h-8 w-auto"
-          />
-        </Link>
+    <main className="relative overflow-hidden grid grid-cols-2 gap-10 items-center h-screen">
+      <section className="w-full h-full ">
+        <div className="relative max-w-[640px] mx-auto h-full w-full flex flex-col justify-center">
+          <Link href="/" className="pb-8">
+            <Image
+              src="/assets/icons/equify-logo-light.png"
+              alt="company logo"
+              width={140}
+              height={32}
+              className="h-8 w-auto"
+            />
+          </Link>
 
-        <div className="pb-6 lg:pb-8 flex-1">{children}</div>
+          <div className="">{children}</div>
+        </div>
       </section>
 
-      <section className="auth-right-section">
+      <section className="flex flex-col justify-center h-full px-10">
         <div className="z-10 relative lg:mt-4 lg:mb-16">
-          <blockquote className="auth-blockquote">
-            Equify turned my watchlist into a winning list. The alerts are
-            spot-on, and I feel more confident making moves in the market
+          <blockquote className="text-muted-foreground">
+            Equify keeps me one step ahead of the market. The alerts are
+            accurate, fast, and help me spot real opportunities.
           </blockquote>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between pt-6">
             <div>
-              <cite className="auth-testimonial-author">- Niko S.</cite>
-              <p className="max-md:text-xs text-gray-500">Retail Investor</p>
+              <cite className="text-foreground text-lg font-semibold">
+                - Jenna L.
+              </cite>
+              <p className="max-md:text-xs text-muted-foreground">
+                Swing Trader
+              </p>
             </div>
             <div className="flex items-center gap-0.5">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -50,13 +56,13 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
 
-        <div className="flex-1 relative">
+        <div className="relative">
           <Image
-            src="/assets/images/dashboard.png"
+            src="/assets/images/dashboard-image.webp"
             alt="Dashboard Preview"
             width={1440}
             height={1150}
-            className="auth-dashboard-preview absolute top-0"
+            className=""
           />
         </div>
       </section>

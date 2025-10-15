@@ -154,3 +154,13 @@ body {
   --tw-translate-y: -80% !important;
   translate: var(--tw-translate-x) var(--tw-translate-y);
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--color-background) inset !important;
+  -webkit-text-fill-color: var(--color-foreground) !important;
+  border-color: var(--color-primary) !important;
+  outline-color: var(--color-primary) !important;
+}
