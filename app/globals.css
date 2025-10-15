@@ -164,3 +164,26 @@ input:-webkit-autofill:active {
   border-color: var(--color-primary) !important;
   outline-color: var(--color-primary) !important;
 }
+
+.sign-up-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+}
+.sign-up-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.sign-up-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sign-up-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+}
+.sign-up-scrollbar:hover {
+  scrollbar-color: var(--primary) transparent;
+}
+.sign-up-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+}

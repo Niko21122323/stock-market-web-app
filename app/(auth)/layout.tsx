@@ -9,9 +9,9 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
   if (session?.user) redirect("/");
 
   return (
-    <main className="relative overflow-hidden grid grid-cols-2 gap-10 items-center h-screen">
-      <section className="w-full h-full ">
-        <div className="relative max-w-[640px] mx-auto h-full w-full flex flex-col justify-center">
+    <main className="relative overflow-hidden grid lg:grid-cols-2 gap-10 items-center lg:h-screen lg:overflow-y-auto max-lg:py-10 px-4 lg:px-6">
+      <section className="w-full h-full">
+        <div className="relative lg:max-w-[640px] mx-auto h-full w-full flex flex-col justify-center">
           <Link href="/" className="pb-8">
             <Image
               src="/assets/icons/equify-logo-light.png"
@@ -26,7 +26,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
         </div>
       </section>
 
-      <section className="flex flex-col justify-center h-full px-10">
+      <section className="flex flex-col justify-center h-full lg:px-10">
         <div className="z-10 relative lg:mt-4 lg:mb-16">
           <blockquote className="text-muted-foreground">
             Equify keeps me one step ahead of the market. The alerts are

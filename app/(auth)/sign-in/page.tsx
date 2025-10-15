@@ -36,31 +36,33 @@ const SignIn = () => {
 
   return (
     <>
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground">
+      <h1 className="pb-10 text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground">
         Welcome back!
       </h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-0">
-        <InputField
-          name="email"
-          label="Email"
-          placeholder="john@doe.com"
-          register={register}
-          error={errors.email}
-          validation={{
-            required: "Email is required",
-            pattern: /^\w+@\w+\.\w+$/,
-          }}
-        />
-        <InputField
-          name="password"
-          label="Password"
-          placeholder="Enter your password"
-          type="password"
-          register={register}
-          error={errors.password}
-          validation={{ required: "Password is required", minLength: 8 }}
-        />
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+          <InputField
+            name="email"
+            label="Email"
+            placeholder="john@doe.com"
+            register={register}
+            error={errors.email}
+            validation={{
+              required: "Email is required",
+              pattern: /^\w+@\w+\.\w+$/,
+            }}
+          />
+          <InputField
+            name="password"
+            label="Password"
+            placeholder="Enter your password"
+            type="password"
+            register={register}
+            error={errors.password}
+            validation={{ required: "Password is required", minLength: 8 }}
+          />
+        </div>
         <Button
           type="submit"
           disabled={isSubmitting}

@@ -53,12 +53,15 @@ const CountrySelect = ({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger
+        asChild
+        className="px-3 py-6 text-foreground focus:placeholder:text-muted-foreground/50 !bg-background !outline-primary w-full"
+      >
         <Button
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="country-select-trigger"
+          className="flex items-center justify-between"
         >
           {value ? (
             <span className="flex items-center gap-2">
@@ -72,10 +75,10 @@ const CountrySelect = ({
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="w-full p-0 bg-gray-800 border-gray-600"
+        className="w-full p-0 bg-background border-border"
         align="start"
       >
-        <Command className="bg-gray-800 border-gray-600">
+        <Command className="bg-background border-border">
           <CommandInput
             placeholder="Search countries..."
             className="country-select-input"
@@ -83,8 +86,8 @@ const CountrySelect = ({
           <CommandEmpty className="country-select-empty">
             No country found.
           </CommandEmpty>
-          <CommandList className="max-h-60 bg-gray-800 scrollbar-hide-default">
-            <CommandGroup className="bg-gray-800">
+          <CommandList className="max-h-60 bg-background scrollbar-hide-default">
+            <CommandGroup className="bg-background">
               {countries.map((country) => (
                 <CommandItem
                   key={country.value}
@@ -124,7 +127,7 @@ export const CountrySelectField = ({
 }: CountrySelectProps) => {
   return (
     <div className="space-y-2">
-      <Label htmlFor={name} className="form-label">
+      <Label htmlFor={name} className="text-foreground text-lg font-medium">
         {label}
       </Label>
       <Controller
