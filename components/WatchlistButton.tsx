@@ -1,26 +1,58 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useTransition } from "react";
+import {
+  addToWatchlist,
+  removeFromWatchlist,
+} from "@/lib/actions/watchlist.actions";
+
+interface WatchlistButtonProps {
+  symbol: string;
+  company: string;
+  isInWatchlist?: boolean;
+  showTrashIcon?: boolean;
+  type?: "button" | "icon";
+  onWatchlistChange?: (symbol: string, added: boolean) => void;
+}
 
 const WatchlistButton = ({
   symbol,
   company,
-  isInWatchlist,
+  isInWatchlist = false,
   showTrashIcon = false,
   type = "button",
   onWatchlistChange,
 }: WatchlistButtonProps) => {
-  const [added, setAdded] = useState<boolean>(!!isInWatchlist);
+  const [added, setAdded] = useState<boolean>(isInWatchlist);
+  const [isPending, startTransition] = useTransition();
 
   const label = useMemo(() => {
-    if (type === "icon") return added ? "" : "";
+    if (type === "icon") return "";
     return added ? "Remove from Watchlist" : "Add to Watchlist";
   }, [added, type]);
 
   const handleClick = () => {
-    const next = !added;
-    setAdded(next);
-    onWatchlistChange?.(symbol, next);
+    const nextState = !added;
+
+    startTransition(async () => {
+      try {
+        if (nextState) {
+          const result = await addToWatchlist(symbol, company);
+          if (result.success) {
+            setAdded(true);
+            onWatchlistChange?.(symbol, true);
+          }
+        } else {
+          const result = await removeFromWatchlist(symbol);
+          if (result.success) {
+            setAdded(false);
+            onWatchlistChange?.(symbol, false);
+          }
+        }
+      } catch (err) {
+        console.error("Watchlist action failed:", err);
+      }
+    });
   };
 
   if (type === "icon") {
@@ -37,17 +69,19 @@ const WatchlistButton = ({
             ? `Remove ${symbol} from watchlist`
             : `Add ${symbol} to watchlist`
         }
-        className={`watchlist-icon-btn ${added ? "watchlist-icon-added" : ""}`}
+        className={`relative overflow-hidden w-full flex items-center justify-center cursor-pointer text-background rounded-lg border border-primary py-3 px-6 group ${isPending ? "opacity-50 cursor-wait" : ""}`}
         onClick={handleClick}
+        disabled={isPending}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill={added ? "#FACC15" : "none"}
-          stroke="#FACC15"
+          fill={added ? "white" : "none"}
+          stroke="white"
           strokeWidth="1.5"
           className="watchlist-star"
         >
+          <title>Trash icon</title>
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -61,9 +95,11 @@ const WatchlistButton = ({
   return (
     <button
       type="button"
-      className={`watchlist-btn ${added ? "watchlist-remove" : ""}`}
+      className={`relative overflow-hidden w-full flex items-center justify-center cursor-pointer text-background rounded-lg border border-primary py-3 px-6 group ${isPending ? "opacity-50 cursor-wait" : ""}`}
       onClick={handleClick}
+      disabled={isPending}
     >
+      <div className="absolute bottom-0 left-0 w-full h-full bg-primary group-hover:h-0 transition-all duration-300 ease-in-out"></div>
       {showTrashIcon && added ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -73,6 +109,7 @@ const WatchlistButton = ({
           stroke="currentColor"
           className="w-5 h-5 mr-2"
         >
+          <title>Trash icon</title>
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -80,7 +117,9 @@ const WatchlistButton = ({
           />
         </svg>
       ) : null}
-      <span>{label}</span>
+      <span className="relative z-10 group-hover:text-foreground transition-colors duration-300 ease-in-out">
+        {isPending ? "..." : label}
+      </span>
     </button>
   );
 };

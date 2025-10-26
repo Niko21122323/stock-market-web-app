@@ -198,3 +198,24 @@ export const searchStocks = cache(
 		}
 	},
 );
+
+export const getStockMetrics = cache(async (symbol: string) => {
+	const token =
+		process.env.FINNHUB_API_KEY ?? process.env.NEXT_PUBLIC_FINNHUB_API_KEY;
+	if (!token) throw new Error("FINNHUB API key not configured");
+
+	const metricsUrl = `${FINNHUB_BASE_URL}/stock/metric?symbol=${encodeURIComponent(symbol)}&metric=all&token=${token}`;
+	const metricsData = await fetchJSON<any>(metricsUrl, 60);
+	const quoteUrl = `${FINNHUB_BASE_URL}/quote?symbol=${encodeURIComponent(symbol)}&token=${token}`;
+	const quoteData = await fetchJSON<any>(quoteUrl, 60);
+
+	return {
+		price: quoteData?.c ?? null,
+		marketCap: metricsData.metric?.marketCapitalization
+			? metricsData.metric.marketCapitalization * 1_000_000
+			: null,
+		peRatio: metricsData.metric?.peBasicExclExtraTTM ?? null,
+		eps: metricsData.metric?.epsTTM ?? null,
+		divYield: metricsData.metric?.dividendYieldIndicatedAnnual ?? null,
+	};
+});

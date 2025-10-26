@@ -372,7 +372,7 @@ export const TECHNICAL_ANALYSIS_WIDGET_CONFIG = (symbol: string) => ({
   isTransparent: "true",
   locale: "en",
   width: "100%",
-  height: 400,
+  height: 370,
   interval: "1h",
   largeChartUrl: "",
 });
@@ -392,7 +392,7 @@ export const COMPANY_FINANCIALS_WIDGET_CONFIG = (symbol: string) => ({
   isTransparent: "true",
   locale: "en",
   width: "100%",
-  height: 464,
+  height: 264,
   displayMode: "regular",
   largeChartUrl: "",
 });
