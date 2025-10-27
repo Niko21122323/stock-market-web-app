@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutDashboardIcon, LogOut } from "lucide-react";
+import { Eye, LayoutDashboardIcon, LogOut, LucideEyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -99,7 +99,11 @@ const UserDropdown = ({
               key={href}
               className="py-4 hover:focus:bg-primary focus:bg-transparent transition-colors duration-300 ease-in-out cursor-pointer group"
             >
-              <LayoutDashboardIcon className="h-4 w-4 mr-2 group-hover:text-background transition-colors duration-300 ease-in-out" />
+              {href === "/" ? (
+                <LayoutDashboardIcon className="h-4 w-4 mr-2 group-hover:text-background transition-colors duration-300 ease-in-out" />
+              ) : (
+                <Eye className="h-4 w-4 mr-2 group-hover:text-background transition-colors duration-300 ease-in-out" />
+              )}
               <Link
                 href={href}
                 className="text-foreground text-md font-semibold group-hover:text-background transition-colors duration-300 ease-in-out"

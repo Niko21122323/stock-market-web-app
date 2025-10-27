@@ -3,8 +3,14 @@ import { redirect } from "next/navigation";
 import WatchlistTable from "@/components/WatchlistTable";
 import { getWatchlist } from "@/lib/actions/watchlist.actions";
 import { auth } from "@/lib/better-auth/auth";
+import {
+  SYMBOL_INFO_WIDGET_CONFIG,
+  COMPANY_FINANCIALS_WIDGET_CONFIG,
+} from "@/lib/constants";
+import TradingViewWidget from "@/components/TradingViewWidget";
 
 export default async function WatchlistPage() {
+  const scriptUrl = `https://s3.tradingview.com/external-embedding/embed-widget-`;
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (!session?.user) {
@@ -12,6 +18,8 @@ export default async function WatchlistPage() {
   }
 
   const { items, error } = await getWatchlist();
+
+  console.log(items);
 
   return (
     <div className="min-h-screen p-4 md:p-6 lg:p-8">
@@ -42,7 +50,27 @@ export default async function WatchlistPage() {
             </p>
           </div>
         ) : (
-          <WatchlistTable items={items} />
+          <div className="">
+            <WatchlistTable items={items} />
+            <div className={`grid pt-10 gap-6`}>
+              {items.map((item) => (
+                <div
+                  className="grid grid-cols-1 md:grid-cols-2 md:gap-6 max-md:border-t border-border max-md:pt-6"
+                  key={item.symbol}
+                >
+                  <TradingViewWidget
+                    key={item.symbol}
+                    scriptUrl={`${scriptUrl}symbol-info.js`}
+                    config={SYMBOL_INFO_WIDGET_CONFIG(item.symbol)}
+                  />
+                  <TradingViewWidget
+                    scriptUrl={`${scriptUrl}financials.js`}
+                    config={COMPANY_FINANCIALS_WIDGET_CONFIG(item.symbol)}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         )}
       </div>
     </div>
