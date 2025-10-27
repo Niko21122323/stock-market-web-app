@@ -8,6 +8,7 @@ import {
   COMPANY_FINANCIALS_WIDGET_CONFIG,
 } from "@/lib/constants";
 import TradingViewWidget from "@/components/TradingViewWidget";
+import Header from "@/components/Header";
 
 export default async function WatchlistPage() {
   const scriptUrl = `https://s3.tradingview.com/external-embedding/embed-widget-`;
@@ -19,11 +20,19 @@ export default async function WatchlistPage() {
 
   const { items, error } = await getWatchlist();
 
-  console.log(items);
+  if (!session?.user) redirect("/sign-in");
+
+  const user = {
+    id: session.user.id,
+    name: session.user.name,
+    email: session.user.email,
+  };
 
   return (
-    <div className="min-h-screen p-4 md:p-6 lg:p-8">
-      <div className="max-w-7xl mx-auto">
+    <main className="min-h-screen p-4 md:p-6 lg:p-8">
+      <Header user={user} />
+
+      <div className="container mx-auto py-16 px-4 lg:px-6">
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
             My Watchlist
@@ -73,6 +82,6 @@ export default async function WatchlistPage() {
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 }
