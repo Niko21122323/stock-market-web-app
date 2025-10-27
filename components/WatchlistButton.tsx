@@ -27,7 +27,6 @@ const WatchlistButton = ({
   const [added, setAdded] = useState<boolean>(isInWatchlist);
   const [isPending, startTransition] = useTransition();
 
-  // Sync local state with prop changes
   useEffect(() => {
     setAdded(isInWatchlist);
   }, [isInWatchlist]);
@@ -39,7 +38,6 @@ const WatchlistButton = ({
 
   const handleClick = () => {
     const nextState = !added;
-
     startTransition(async () => {
       try {
         if (nextState) {
@@ -47,12 +45,14 @@ const WatchlistButton = ({
           if (result.success) {
             setAdded(true);
             onWatchlistChange?.(symbol, true);
+            window.dispatchEvent(new Event("watchlist-updated"));
           }
         } else {
           const result = await removeFromWatchlist(symbol);
           if (result.success) {
             setAdded(false);
             onWatchlistChange?.(symbol, false);
+            window.dispatchEvent(new Event("watchlist-updated"));
           }
         }
       } catch (err) {

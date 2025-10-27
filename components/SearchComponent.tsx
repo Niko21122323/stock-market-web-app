@@ -66,7 +66,6 @@ export default function SearchCommand({
     setStocks(initialStocks);
   };
 
-  // Handle watchlist changes to update local state
   const handleWatchlistChange = (symbol: string, added: boolean) => {
     setStocks((prevStocks) =>
       prevStocks.map((stock) =>
