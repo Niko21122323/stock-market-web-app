@@ -288,7 +288,7 @@ export const NEWS_SUMMARY_EMAIL_TEMPLATE = `<!DOCTYPE html>
                                 </p>
                                 <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5; color: #CCDADC !important;">
                                     <a href="#" style="color: #CCDADC !important; text-decoration: underline;">Unsubscribe</a> | 
-                                    <a href="https://signalist.app" style="color: #CCDADC !important; text-decoration: underline;">Visit Equify</a>
+                                    <a href="https://equify-stocks.vercel.app/_next/image?url=%2Fassets%2Ficons%2Fequify-logo-light.png&w=384&q=75" style="color: #CCDADC !important; text-decoration: underline;">Visit Equify</a>
                                 </p>
                                 <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #CCDADC !important;">
                                     © 2025 Equify
@@ -497,7 +497,7 @@ export const STOCK_ALERT_UPPER_EMAIL_TEMPLATE = `<!DOCTYPE html>
                                 </p>
                                 <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5; color: #CCDADC !important;">
                                     <a href="#" style="color: #CCDADC !important; text-decoration: underline;">Unsubscribe</a> | 
-                                    <a href="https://signalist.app" style="color: #CCDADC !important; text-decoration: underline;">Visit Equify</a>
+                                    <a href="https://equify-stocks.vercel.app/_next/image?url=%2Fassets%2Ficons%2Fequify-logo-light.png&w=384&q=75" style="color: #CCDADC !important; text-decoration: underline;">Visit Equify</a>
                                 </p>
                                 <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #CCDADC !important;">
                                     © 2025 Equify
@@ -706,7 +706,7 @@ export const STOCK_ALERT_LOWER_EMAIL_TEMPLATE = `<!DOCTYPE html>
                                 </p>
                                 <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5; color: #CCDADC !important;">
                                     <a href="#" style="color: #CCDADC !important; text-decoration: underline;">Unsubscribe</a> | 
-                                    <a href="https://signalist.app" style="color: #CCDADC !important; text-decoration: underline;">Visit Equify</a>
+                                    <a href="https://equify-stocks.vercel.app/_next/image?url=%2Fassets%2Ficons%2Fequify-logo-light.png&w=384&q=75" style="color: #CCDADC !important; text-decoration: underline;">Visit Equify</a>
                                 </p>
                                 <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #CCDADC !important;">
                                     © 2025 Equify
@@ -926,7 +926,7 @@ export const VOLUME_ALERT_EMAIL_TEMPLATE = `<!DOCTYPE html>
                                 </p>
                                 <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5; color: #CCDADC !important;">
                                     <a href="#" style="color: #CCDADC !important; text-decoration: underline;">Unsubscribe</a> | 
-                                    <a href="https://signalist.app" style="color: #CCDADC !important; text-decoration: underline;">Visit Equify</a>
+                                    <a href="https://equify-stocks.vercel.app/_next/image?url=%2Fassets%2Ficons%2Fequify-logo-light.png&w=384&q=75" style="color: #CCDADC !important; text-decoration: underline;">Visit Equify</a>
                                 </p>
                                 <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #CCDADC !important;">
                                     © 2025 Equify
